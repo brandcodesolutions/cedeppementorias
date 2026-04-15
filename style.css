@@ -339,4 +339,8 @@ input {
   .page-shell {
     padding: 18px 16px 36px;
   }
+
+  .site-footer p {
+    font-size: 0.75rem;
+  }
 }
