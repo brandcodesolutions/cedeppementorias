@@ -210,6 +210,11 @@ input {
   text-align: center;
 }
 
+.site-footer p {
+  font-size: 0.85rem;
+  margin: 0;
+}
+
 .footer-content {
   display: flex;
   flex-direction: column;
