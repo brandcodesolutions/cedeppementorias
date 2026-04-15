@@ -14,20 +14,22 @@ const sectionData = {
   },
   executivo: {
     title: 'Sumário Executivo',
-    text: 'Documento estratégico para apresentação de resultados, objetivos e oportunidades de parcerias. Ideal para potenciais associados, patrocinadores e empresas em processo de expansão.',
+    text: 'Apresentação estratégica da Empresa PARA. Um documento essencial que sintetiza a visão transformadora, o modelo de negócio, impacto corporativo e as oportunidades de parceria que definem a atuação estratégica da organização.',
     highlights: [
-      'Visão corporativa de alto padrão',
-      'Prioridades de impacto e crescimento sustentável',
-      'Modelo de engajamento para mentores e rede de apoio'
+      'Visão e missão estratégica da Empresa PARA',
+      'Modelo de impacto social e corporativo',
+      'Oportunidades de parcerias e engajamento'
     ]
   },
   'mentor-empresa': {
-    title: 'Mentor Líder – Modo Empresarial',
-    text: 'Programa dedicado a mentores com experiência em gestão empresarial, inovação e governança. O foco é apoiar líderes em decisões estratégicas e na consolidação de resultados.',
+    title: 'Mentor Líder – Roberto Cysne',
+    text: 'CEO do CEDEPPE, Roberto Cysne é Químico Industrial com Doutorado em Química Orgânica (UFRJ) e Pós-Doutorado pela Universidade de Manchester. Especialista em gestão organizacional, sistemas de qualidade e inovação, com trajetória consolidada em geração de negócios, planejamento estratégico e mentoria de empreendedores de alto impacto.',
     highlights: [
-      'Mentoria voltada para decisões de alto impacto',
-      'Apoio em planejamento estratégico e gestão de crise',
-      'Troca de experiências entre executivos e consultores'
+      'Doutorado em Química Orgânica - UFRJ',
+      'Pós-Doutorado em Gestão de Processos Industriais - Manchester',
+      'Expertise em sistemas de gestão, qualidade e responsabilidade social corporativa',
+      'Mentor de empreendedores ambiciosos e líderes estratégicos',
+      'Excelente orador e instrutor de renome corporativo e acadêmico'
     ]
   },
   'mentora-comunicacao': {
@@ -49,21 +51,29 @@ const sectionData = {
     ]
   },
   passarelas: {
-    title: 'Projeto Passarelas',
-    text: 'Iniciativa que apoia a transição de carreiras, promovendo a entrada de novos talentos em ambientes corporativos e de liderança, com mentorias guiadas e atividades práticas.',
+    title: 'Projeto Passarelas – Aceleração de Talentos Femininos',
+    text: 'Trilha estruturada em 7 passos para acelerar o desenvolvimento de talentos femininos, promovendo transição de carreira, liderança e protagonismo no mercado corporativo. Um programa transformador com mentorias especializadas e networking de impacto.',
     highlights: [
-      'Conexão entre profissionais e empresas',
-      'Desenvolvimento de competências profissionais',
-      'Preparação para programas de liderança'
+      'Passo 1: Diagnóstico e mapeamento de competências',
+      'Passo 2: Construção de plano de desenvolvimento personalizado',
+      'Passo 3: Mentoria especializada em liderança feminina',
+      'Passo 4: Desenvolvimento de marca pessoal e comunicação',
+      'Passo 5: Networking com líderes e oportunidades corporativas',
+      'Passo 6: Preparação para transição e posicionamento',
+      'Passo 7: Acompanhamento contínuo e suporte em carreira'
     ]
   },
   gerencia: {
-    title: 'Gerência 360º',
-    text: 'Programa para gestores e coordenadores que desejam ampliar sua visão estratégica e habilidade de conduzir equipes de alta performance em ambientes complexos.',
+    title: 'Gerência 360º – Múltiplas Áreas',
+    text: 'Programa abrangente para gestores de diferentes áreas que buscam ampliar sua visão estratégica e habilidade de conduzir equipes de alta performance. Cada área possui mentorias customizadas e abordagens integradas.',
     highlights: [
-      'Gestão integrada de pessoas e processos',
-      'Fortalecimento de liderança de médio escalão',
-      'Ferramentas para governança, metas e resultados'
+      'Área de Operações: Gestão de processos e eficiência',
+      'Área de Recursos Humanos: Desenvolvimento de pessoas e cultura',
+      'Área Comercial: Estratégia de vendas e expansão',
+      'Área Financeira: Governança e resultados sustentáveis',
+      'Área de Inovação: Transformação digital e modernização',
+      'Gestão integrada entre áreas e funcionalidades',
+      'Ferramentas de liderança, metas e performance'
     ]
   },
   universitarios: {
@@ -153,13 +163,23 @@ const leadForm = document.getElementById('lead-form');
 leadForm.addEventListener('submit', event => {
   event.preventDefault();
   const name = leadForm.elements.name.value.trim();
+  const phone = leadForm.elements.phone.value.trim();
   const email = leadForm.elements.email.value.trim();
 
-  if (!name || !email) {
-    alert('Por favor, preencha nome e e-mail para participar.');
+  if (!name || !email || !phone) {
+    alert('Por favor, preencha todos os campos para participar.');
     return;
   }
 
-  alert(`Obrigado, ${name}! Sua inscrição para o CEDEPPE Mentorias foi registrada localmente como demonstração.`);
+  // Monta a mensagem para WhatsApp
+  const message = `Olá! Gostaria de participar do CEDEPPE Mentorias.\n\nDados:\nNome: ${name}\nTelefone: ${phone}\nE-mail: ${email}`;
+  const encodedMessage = encodeURIComponent(message);
+  const whatsappPhone = '5541997642212'; // Número sem caracteres especiais
+  const whatsappLink = `https://wa.me/${whatsappPhone}?text=${encodedMessage}`;
+
+  // Abre o WhatsApp em nova aba
+  window.open(whatsappLink, '_blank');
+
+  alert(`Obrigado, ${name}! Abrindo WhatsApp para confirmar sua inscrição no CEDEPPE Mentorias.`);
   leadForm.reset();
 });
